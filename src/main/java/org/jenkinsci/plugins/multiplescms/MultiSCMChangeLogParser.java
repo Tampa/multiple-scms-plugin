@@ -20,7 +20,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.apache.commons.lang.StringEscapeUtils;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -98,7 +97,7 @@ public class MultiSCMChangeLogParser extends ChangeLogParser {
                 try {
                     OutputStreamWriter outputStream = new OutputStreamWriter(new FileOutputStream(tempFile));
                     //un-escaping the XMl so it is written to the temp file correctly
-                    String data = StringEscapeUtils.unescapeXml(buffer.toString());
+                    String data = MultiSCMXmlEscape.unescapeXml(buffer.toString());
                     outputStream.write(data);
                     outputStream.close();
                     buffer = null;

@@ -37,7 +37,6 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang.StringEscapeUtils;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.export.Exported;
@@ -154,8 +153,8 @@ public class MultiSCM extends SCM implements Saveable {
                 //Dont forget to escape the XML in case there is any CDATA sections
                 logWriter.write(String.format("<%s scm=\"%s\">\n<![CDATA[%s]]>\n</%s>\n",
                         MultiSCMChangeLogParser.SUB_LOG_TAG,
-                        StringEscapeUtils.escapeXml(scm.getKey()),
-                        StringEscapeUtils.escapeXml(subLogText),
+                        MultiSCMXmlEscape.escapeXml(scm.getKey()),
+                        MultiSCMXmlEscape.escapeXml(subLogText),
                         MultiSCMChangeLogParser.SUB_LOG_TAG));
 
                 subChangeLog.delete();
